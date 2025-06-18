@@ -1,15 +1,16 @@
 import  express from "express";
+import bodyParser from "body-parser";
 import { healthRouter, calculatorRouter } from "./src/routes";
 import { addTimestamp, errorHandler, logger } from "./src/middleware";
 
 const app =express();
 const port = 3000;
 
-app.use(express.json());
-app.use(express.urlencoded({extended:true}))
+
 app.use(addTimestamp);
 app.use(logger);
-
+app.use(express.json());
+app.use(express.urlencoded({extended:true}))
 
 app.use('/health',healthRouter);
 app.use('/calculator',calculatorRouter);

@@ -1,5 +1,6 @@
 import { Request, Response, Router } from 'express';
-import { logger } from '../middleware';
+import { logger, validateCalculatorRequest } from '../middleware';
+import { CalculatorRequestBody } from '../types';
 
 export const router = Router();
 
@@ -26,11 +27,30 @@ router.get('/:id', (req: Request, res: Response) => {
     })
 });
 
-router.post('/',(req:Request,res)=>{
-    console.log(req.body);
+router.post('/',validateCalculatorRequest,(req:Request<{},any,CalculatorRequestBody>,res)=>{
+    const {operator,operand1,operand2} = req.body;
+    let result:number|string;
+    result =0;
+    switch(operator){
+        case "+":
+            result = operand1 + operand2
+            break;
+        case "-":
+            result = operand1 - operand2;
+            break;
+        case "*":
+            result = operand1 * operand2;
+            break;
+        case "/":
+            result = operand1 / operand2;
+            break;
+        default:
+            result='Invalid operator'
+            break;
+    }
     res.send({
         message:'Create new Calculation',
         timestamp:req.timestamp,
-        data:req.body
+        data:result
     })
 });
