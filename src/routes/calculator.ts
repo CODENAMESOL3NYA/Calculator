@@ -27,6 +27,10 @@ router.get('/:id', (req: Request, res: Response) => {
     })
 });
 
+router.delete('/:id',(req:Request,res:Response)=>{
+    res.status(204).end();
+})
+
 router.post('/',validateCalculatorRequest,(req:Request<{},any,CalculatorRequestBody>,res)=>{
     const {operator,operand1,operand2} = req.body;
     let result:number|string;
