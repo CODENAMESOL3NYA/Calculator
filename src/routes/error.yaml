@@ -1,0 +1,23 @@
+components:
+  schemas:
+    ErrorModel:
+      type: object
+      required:
+       - message
+      properties:
+        message:
+          type: string
+          example: Error
+  responses:
+      InternalServerError:
+        description: Internal server error
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ErrorModel'
+      NotFoundError:
+        description: Not Found
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ErrorModel'

@@ -1,0 +1,12 @@
+openapi: 3.0.3
+info: 
+  title: Calculator API with new updates
+  version: 1.0.0
+tags: 
+  - name: health
+    description: health check
+  - name: calculator
+    description: Calculator operations
+externalDocs:
+  url: https://github.com/CODENAMESOL3NYA/Calculator.git
+  description: My calculator repository
